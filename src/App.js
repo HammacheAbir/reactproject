@@ -7,6 +7,7 @@ import AddTodo from "./componenets/addTodo"
 import  {v4 as uuid} from 'uuid'
 import About from './pages/about'
 import axios from "axios"
+import AddList from "./componenets/addList"
 
 class App extends Component{
 
@@ -47,14 +48,18 @@ class App extends Component{
       <Router>
         <div>
           <Header/> 
-
+          <AddList/>
           <Route exact path='/' render={props =>(
-            <React.Fragment>
-              <AddTodo addTodo={this.addTodo}/>
-              <Todos items={this.state.todos} onCheckboxClicked={this.onCheckboxClicked} onClickBtn={this.onClickBtn}/>
-            </React.Fragment>
+            <div>
+              
+              <div className=" inline-flex">
+                <Todos addTodo={this.addTodo} items={this.state.todos} onCheckboxClicked={this.onCheckboxClicked} onClickBtn={this.onClickBtn}/>
+                <Todos addTodo={this.addTodo} items={this.state.todos} onCheckboxClicked={this.onCheckboxClicked} onClickBtn={this.onClickBtn}/>
+                <Todos addTodo={this.addTodo} items={this.state.todos} onCheckboxClicked={this.onCheckboxClicked} onClickBtn={this.onClickBtn}/>
+              
+              </div>
+            </div>
           )}/>
-
           <Route path='/about' component={About}/>
           </div>
       </Router>

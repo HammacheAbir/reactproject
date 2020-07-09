@@ -5,8 +5,6 @@ export class TodoItem extends Component {
 
     getStyle= ()=>{
         return{
-            backgroundColor: '#f4f4f4',
-            padding: '10px',
             textDecoration: this.props.todo.completed? 'line-through' : 'none'  
         }
     }
@@ -14,12 +12,13 @@ export class TodoItem extends Component {
     render() {
         const {id,title}=this.props.todo;
         return (
-            <div>   
-                <p style={this.getStyle()}>
-                    <input type="checkbox" onChange={this.props.onCheckboxClicked.bind(this,id)}/>
-                     {title}
-                    <button style={btnStyle} onClick={this.props.onClickBtn.bind(this,id)}>x</button>
-                </p>
+            <div className="bg-white p-3 overflow-scroll h-13 ... flex-row object-center rounded mt-2 mb-1 border-b border-grey cursor-pointer hover:bg-grey-lighter">  
+                    <p style={this.getStyle()}>
+                        <input checked={this.props.todo.completed? true : false} type="checkbox" className="form-checkbox h-4 w-5 text-teal-600" onChange={this.props.onCheckboxClicked.bind(this,id)}/>
+                        {' '}
+                        {title}
+                        <button className="w-8 h-8 bg-red-600 hover:bg-red-700 content-center float-right m-2  rounded-full focus:outline-none focus:shadow-outline pb-1 shadow" onClick={this.props.onClickBtn.bind(this,id)}>x</button>
+                    </p>
             </div>
         )
     }
@@ -39,7 +38,9 @@ const btnStyle={
         border:'none',
         borderRadius:'50%',
         cursor:'pointer',
-        float:'right'
+        float:'right',
+        padding: '1px 7px 1px 7px'
+
 }
 
 export default TodoItem

@@ -4,24 +4,52 @@
 
 @tailwind utilities;
 
-dialog[open] {
-    animation: appear .15s cubic-bezier(0, 1.8, 1, 1.8);
-  }
-  
-    dialog::backdrop {
+
+		.animated {
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+		}
+
+		.animated.faster {
+			-webkit-animation-duration: 500ms;
+			animation-duration: 500ms;
+		}
+
+		.fadeIn {
+			-webkit-animation-name: fadeIn;
+			animation-name: fadeIn;
+		}
+
+		.fadeOut {
+			-webkit-animation-name: fadeOut;
+			animation-name: fadeOut;
+    }
+    
+    .x::backdrop {
       background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(54, 54, 54, 0.5));
       backdrop-filter: blur(3px);
     }
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+    }
     
-   
-  @keyframes appear {
-    from {
-      opacity: 0;
-      transform: translateX(-3rem);
-    }
-  
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  } 
+
+		@keyframes fadeOut {
+			from {
+				opacity: 1;
+			}
+
+			to {
+				opacity: 0;
+			}
+		}
+

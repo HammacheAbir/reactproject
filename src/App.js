@@ -12,7 +12,9 @@ import AddList from "./componenets/addList"
 class App extends Component{
 
   state={
-    todos: []
+    todos: [],
+    n: 0,
+    titles:[]
   }
 
   componentDidMount(){
@@ -36,11 +38,24 @@ class App extends Component{
   }
 
   addTodo= (value)=>{
-
     axios.post('https://jsonplaceholder.typicode.com/todos/',{
       title: value,
       completed: false
     }).then(res=>this.setState({todos: [...this.state.todos, res.data]}))
+  }
+
+  onAddList=(title)=>{
+    this.setState({titles: [...this.state.titles, title]})
+    this.setState({n: this.state.n + 1})
+  }
+
+  onChangeTitle=(newTitle,index)=>{
+    this.setState({titles: Array.from(this.state.titles).map((title,id)=>{
+      if(id===index){
+          title=newTitle
+      }
+    })})
+
   }
 
   render(){
@@ -48,15 +63,24 @@ class App extends Component{
       <Router>
         <div>
           <Header/> 
-          <AddList/>
+          <AddList addNewList={this.onAddList}/>
           <Route exact path='/' render={props =>(
             <div>
-              
               <div className=" inline-flex">
-                <Todos addTodo={this.addTodo} items={this.state.todos} onCheckboxClicked={this.onCheckboxClicked} onClickBtn={this.onClickBtn}/>
-                <Todos addTodo={this.addTodo} items={this.state.todos} onCheckboxClicked={this.onCheckboxClicked} onClickBtn={this.onClickBtn}/>
-                <Todos addTodo={this.addTodo} items={this.state.todos} onCheckboxClicked={this.onCheckboxClicked} onClickBtn={this.onClickBtn}/>
-              
+                {
+                    Array.from(this.state.titles).map((title,index)=>(
+                      <Todos 
+                        onChangeTitle={this.onChangeTitle}
+                        id={index}
+                        key={index} 
+                        title={title} 
+                        addTodo={this.addTodo} 
+                        items={this.state.todos} 
+                        onCheckboxClicked={this.onCheckboxClicked} 
+                        onClickBtn={this.onClickBtn}
+                      />
+                    ))
+                }
               </div>
             </div>
           )}/>

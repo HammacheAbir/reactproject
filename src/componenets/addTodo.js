@@ -16,9 +16,9 @@ export class AddTodo extends Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit} style={{display:'flex'}}>
+            <form className="bg-white flex items-center rounded-full shadow-xl" onSubmit={this.onSubmit} style={{display:'flex'}}>
                 <input 
-                className="border border-transparent shadow px-4 py-2 leading-normal text-gray-700 bg-white rounded-md focus:outline-none focus:shadow-outline"
+                className="rounded-l-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none"
                     type="text" 
                     name="value"
                     placeholder="Add a task" 
@@ -27,10 +27,10 @@ export class AddTodo extends Component {
                     onChange={this.onChangeValue}
                 />
                 <input 
-                    className="w-10 h-10 bg-teal-300 hover:bg-teal-400 content-center m-2 rounded-full focus:outline-none focus:shadow-outline p-2 shadow"
+                    className="bg-blue-500 text-white m-1 rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center"
                     type="submit" 
-                    value="Add" 
-                    style={{flex:2, cursor:'pointer'}}
+                    value="+" 
+                    style={{ cursor:'pointer'}}
                     
                 />
             </form>

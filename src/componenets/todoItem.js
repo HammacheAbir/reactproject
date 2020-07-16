@@ -17,7 +17,7 @@ export class TodoItem extends Component {
                         <input checked={this.props.todo.completed? true : false} type="checkbox" className="form-checkbox h-4 w-5 text-teal-600" onChange={this.props.onCheckboxClicked.bind(this,id)}/>
                         {' '}
                         {title}
-                        <button className="w-8 h-8 bg-red-600 hover:bg-red-700 content-center float-right m-2  rounded-full focus:outline-none focus:shadow-outline pb-1 shadow" onClick={this.props.onClickBtn.bind(this,id)}>x</button>
+                        <button className="w-8 h-8  bg-red-600 hover:bg-red-700 content-center float-right m-2  rounded-full focus:outline-none focus:shadow-outline pb-1 shadow" onClick={this.props.onClickBtn.bind(this,id)}>x</button>
                     </p>
             </div>
         )
